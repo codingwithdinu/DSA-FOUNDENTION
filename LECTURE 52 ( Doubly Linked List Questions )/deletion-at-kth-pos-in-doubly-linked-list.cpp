@@ -77,20 +77,39 @@ class DoublyLinkedList{
         delete temp;
     }
 
-    void deleteAtPosition(int k){
-        if(head==NULL) return;
+void deleteAtPosition(int k) {
+    if (head == NULL || k <= 0) return;  
 
-        Node* temp = head;
-        int count = 1;
-        while(count < k){
-            temp = temp->next;
-            count++;
-        }
-
-        temp->prev->next = temp->next;
-        temp->next->prev = temp->prev;
-        delete temp;
+    if (k == 1) {  
+        deleteAtStart();
+        return;
     }
+
+    Node* temp = head;
+    int count = 1;
+
+    
+    while (temp != NULL && count < k) {
+        temp = temp->next;
+        count++;
+    }
+
+    if (temp == NULL) {  
+        cout << "Position out of range!" << endl;
+        return;
+    }
+
+    if (temp->next == NULL) { 
+        deleteAtEnd();
+        return;
+    }
+
+    temp->prev->next = temp->next;
+    temp->next->prev = temp->prev;
+
+    delete temp;
+}
+
 
 };
 

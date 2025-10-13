@@ -57,16 +57,7 @@ class DoublyLinkedList{
 };
 
 
-bool IsCriticalPoint(Node* &currNode){
-    if(currNode->prev->val < currNode->val && currNode->next->val < currNode->val){
-        return true;
-    }
-    if(currNode->prev->val > currNode->val && currNode->next->val > currNode->val){
-        return true;
-    }
-    
-    return false;
-}
+
 
 vector<int> pairSumDLL(Node* head , Node* tail , int x){
     vector<int> ans(2,-1);

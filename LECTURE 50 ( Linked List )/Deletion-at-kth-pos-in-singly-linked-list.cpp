@@ -83,6 +83,6 @@ int main(){
     deleteAtTail(head);
     Display(head);
 
-    deleteAtPosition(head,1);
+    deleteAtPosition(head,3);
     Display(head);
 }

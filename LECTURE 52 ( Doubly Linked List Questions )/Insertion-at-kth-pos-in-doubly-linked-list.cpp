@@ -51,22 +51,38 @@ class DoublyLinkedList{
         return;
     }
 
-    void insertAtPosition(int val , int pos){
-        Node* temp = head;
-        int count = 1;
-        while(count < (pos-1)){
-            temp = temp->next;
-            count++;
-        }
-
-        Node* new_node = new Node(val);
-        new_node->next = temp->next;
-        temp->next = new_node;
-
-        new_node->prev = temp;
-        new_node->next->prev = new_node;
+void insertAtPosition(int val, int pos) {
+    if (pos == 1) { 
+        insertAtStart(val);
         return;
     }
+
+    Node* temp = head;
+    int count = 1;
+
+    while (temp != NULL && count < (pos - 1)) {
+        temp = temp->next;
+        count++;
+    }
+
+    if (temp == NULL) { 
+        cout << "Position out of range!" << endl;
+        return;
+    }
+
+    
+    if (temp->next == NULL) {
+        insertAtEnd(val);
+        return;
+    }
+
+    Node* new_node = new Node(val);
+    new_node->next = temp->next;
+    temp->next->prev = new_node;
+    temp->next = new_node;
+    new_node->prev = temp;
+}
+
 
 
     void display(){

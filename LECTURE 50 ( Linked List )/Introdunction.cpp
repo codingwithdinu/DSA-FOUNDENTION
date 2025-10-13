@@ -28,15 +28,15 @@
 
 // Class  to represent the 
 // singly linked list
-class Node {
+// class Node {
   
-  // Data field - can be of 
-  // any type and count
-  int data;
+//   // Data field - can be of 
+//   // any type and count
+//   int data;
   
-  // Pointer to the next node
-  struct Node* next;
-}
+//   // Pointer to the next node
+//   struct Node* next;
+// }
 
 #include <iostream>
 using namespace std;
@@ -53,5 +53,5 @@ class Node{
 
 int main(){
     Node* n = new Node(1);
-    cout<<n->val<<" "<<n->next<<endl;
+    cout<<n->val<<"->"<<"NULL"<<endl;
 }
