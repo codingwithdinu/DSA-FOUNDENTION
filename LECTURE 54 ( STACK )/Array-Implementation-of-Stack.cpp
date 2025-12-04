@@ -60,6 +60,8 @@ class Stack{
     bool IsFULL(){
         return top==capacity;
     }
+
+
 };
 
 int main(){
@@ -77,5 +79,8 @@ int main(){
     st.push(7);
     cout<<st.getTop()<<endl;
 
-
+    while(!st.IsEmpty()){
+        cout<<st.getTop()<<" ";
+        st.pop();
+    }
 }
