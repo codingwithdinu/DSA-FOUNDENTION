@@ -31,7 +31,11 @@ int majorityelement(vector<int> &nums){
                 freq++;
             }
         }
+// <<<<<<< DSA-SERIES
         if(freq > nums.size()){
+// =======
+        if(freq > nums.size()/2){
+// >>>>>>> main
             return val;
         }
     }
