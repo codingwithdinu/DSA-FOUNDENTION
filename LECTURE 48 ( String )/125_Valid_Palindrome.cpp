@@ -8,6 +8,13 @@ public:
         string st = "";
         for(int i=0;i<s.length(); i++){
             if(s[i]>='A' && s[i]<='Z'){
+// <<<<<<< DSA-SERIES
+                s[i] = s[i]+32;
+            }else if(s[i]>='a'&& s[i]<='z'){
+                st.push_back([i]);
+            }
+        }
+// =======
                 st.push_back(s[i]+32);
             }else if(s[i]>='a'&& s[i]<='z'){
                 st.push_back(s[i]);
@@ -16,6 +23,7 @@ public:
 
         if(st.length() <= 1 || (st.empty())) return false;
 
+// >>>>>>> main
         
         int l = 0;
         int r = st.length()-1;
@@ -30,6 +38,11 @@ public:
     }
 };
 
+// <<<<<<< DSA-SERIES
+int main(){
+    Solution obj;
+    string s = "race a car";
+// =======
 
 class SolutionA {
 public:
@@ -56,5 +69,6 @@ public:
 int main(){
     Solution obj;
     string s = " ";
+// >>>>>>> main
     cout<<obj.isPalindrome(s);
 }
