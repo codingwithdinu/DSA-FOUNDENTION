@@ -3,93 +3,78 @@
 #include <algorithm>
 using namespace std;
 
+/* ================================
+   Method 1: Brute Force O(n^2)
+   ================================ */
+int majorityElementBrute(vector<int>& nums) {
+    int n = nums.size();
 
-// method 1 brute force approach O(n^2)
-int main(){
-    vector<int> v = {3,2,3};
-    vector<int> freq(v.size(),0);
-    for(int i=0; i<v.size(); i++){
-        for(int j=0; j<v.size(); j++){
-            if(v[i] == v[j]){
-                freq[i]++;
-            }
-        }
-    }
-    for(int i=0; i<v.size(); i++){
-        if(freq[i] > v.size()/2){
-            cout<<v[i]<<" ";
-            break;
-        }
-    }
-}
-
-int majorityelement(vector<int> &nums){
-    for(int val : nums){
+    for (int i = 0; i < n; i++) {
         int freq = 0;
-        for(int ele : nums){
-            if(val == ele){
+        for (int j = 0; j < n; j++) {
+            if (nums[i] == nums[j]) {
                 freq++;
             }
         }
-// <<<<<<< HEAD
-        if(freq > nums.size()/2){
-// =======
-        if(freq > nums.size()){
-// >>>>>>> DSA-SERIES
-            return val;
+        if (freq > n / 2) {
+            return nums[i];
         }
     }
+    return -1;
 }
 
-// method 2 optimize approach using sorting O(nlogn)
+/* ================================
+   Method 2: Sorting O(n log n)
+   ================================ */
+int majorityElementSort(vector<int>& nums) {
+    sort(nums.begin(), nums.end());
 
-int majorityele(vector<int> &nums){
+    int freq = 1;
+    int n = nums.size();
 
-    sort(nums.begin() , nums.end());
-
-    int freq = 1 ;
-    int ans = nums[0];
-
-    for(int i=1; i<nums.size(); i++){
-        if(nums[i] == nums[i-1]){
+    for (int i = 1; i < n; i++) {
+        if (nums[i] == nums[i - 1]) {
             freq++;
-        }else{
+        } else {
             freq = 1;
-            ans = nums[i];
         }
-        if(freq > nums.size()/2){
-            return ans;
+
+        if (freq > n / 2) {
+            return nums[i];
         }
     }
+    return nums[0];   // majority always exists
 }
 
+/* =========================================
+   Method 3: Boyer–Moore Voting Algorithm
+   Time: O(n), Space: O(1)
+   ========================================= */
+int majorityElementBoyerMoore(vector<int>& nums) {
+    int count = 0;
+    int candidate = 0;
 
-// Boyer–Moore Majority Vote Algorithm
-// The Boyer-Moore voting algorithm is one of the popular optimal algorithms 
-// which is used to find the majority element among the given elements that 
-// have more than N/ 2 occurrences. This works perfectly fine for finding 
-// the majority element which takes 2 traversals over the given elements, 
-// which works in O(N) time complexity and O(1) space complexity.
-// 
-// When the elements are the same as the candidate element, 
-// votes are incremented whereas when some other element is found 
-// (not equal to the candidate element), we decreased the count
-
-int majorityelem(vector<int> &nums){
-    int freq = 0;
-    int ans = 0;
-
-    for(int i=0; i<nums.size(); i++){
-        if(freq == 0){
-            ans = nums[i];
+    for (int num : nums) {
+        if (count == 0) {
+            candidate = num;
         }
-        if(ans == nums[i]){
-            freq++;
-        }
-        else{
-            freq--;
+        if (num == candidate) {
+            count++;
+        } else {
+            count--;
         }
     }
+    return candidate;
+}
 
-    return ans;
+int main() {
+    vector<int> nums = {3, 2, 3};
+
+    cout << "Brute Force: "<< majorityElementBrute(nums) << endl;
+
+    cout << "Sorting Method: "<< majorityElementSort(nums) << endl;
+
+    cout << "Boyer-Moore: "<< majorityElementBoyerMoore(nums) << endl;
+
+    return 0;
 }
