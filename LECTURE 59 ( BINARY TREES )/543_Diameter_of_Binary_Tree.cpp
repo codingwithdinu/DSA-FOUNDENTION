@@ -33,7 +33,11 @@ int DOBT(Node* root){
     if(root == NULL) return 0;
     int leftD = DOBT(root->left);
     int rightD = DOBT(root->right);
+// <<<<<<< HEAD
     int currD = height(root->left) + height(root->right)+1;
+// =======
+    int currD = height(root->left) + height(root->right);
+// >>>>>>> DSA-SERIES
     return max(currD , max(leftD , rightD));
 }
 
