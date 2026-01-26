@@ -48,11 +48,10 @@ int main() {
     int m = 3;
     int n = 3;
 
-    vector<int> nums1 = {1, 2, 3, 0, 0, 0};  // size = m+n
+    vector<int> nums1 = {1, 2, 3, 0, 0, 0};  
     vector<int> nums2 = {4, 5, 6};
 
-    // Call any ONE method 👇
-    // mergeWithExtraSpace(nums1, m, nums2, n);
+
     mergeOptimized(nums1, m, nums2, n);
 
     for (int i = 0; i < m + n; i++) {
